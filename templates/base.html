@@ -7,9 +7,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Nana Tina's Xmas Adventure</h1>
-    </header>
+
+<header class="main-header">
+    <div class="header-left">
+        <a href="/" class="home-button">Home</a>
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+    <div class="header-right">
+        <h1>Nana Tina's Christmas Adventure</h1>
+    </div>
+</header>
+
+<header class="secondary-header">
+    <div class="bouncing-images">
+        <img src="/static/images/santa.png" class="bouncing" alt="Santa">
+        <img src="/static/images/reindeer.png" class="bouncing" alt="Elf">
+        <img src="/static/images/present.png" class="bouncing" alt="Present">
+        <img src="/static/images/present.png" class="bouncing" alt="Present">
+        <img src="/static/images/reindeer.png" class="bouncing" alt="Elf">
+        <img src="/static/images/santa.png" class="bouncing" alt="Santa">
+    </div>
+</header>
+
     <main>
         {% block content %}{% endblock %}
     </main>

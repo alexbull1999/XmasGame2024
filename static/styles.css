@@ -1,3 +1,7 @@
+/* Import Pacifico Font */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Body Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +10,7 @@ body {
     color: #333;
 }
 
+/* Header and Footer Styles */
 header, footer {
     background-color: #6200ea;
     color: white;
@@ -13,6 +18,28 @@ header, footer {
     padding: 10px 0;
 }
 
+/* New Header Styles with Pacifico */
+header h1 {
+    font-family: 'Pacifico', cursive; /* Apply Pacifico font */
+    font-size: 28px; /* Adjust size as needed */
+    margin: 0;
+    color: #f9ca24; /* A contrasting gold-like color */
+}
+
+header a {
+    font-family: Arial, sans-serif; /* Keep buttons in Arial for readability */
+    text-decoration: none;
+    color: #f4f4f4;
+    padding: 5px 10px;
+    background-color: #e94560; /* Red button */
+    border-radius: 5px;
+}
+
+header a:hover {
+    background-color: #0f3460; /* Hover effect for buttons */
+}
+
+/* Main Content Styles */
 main {
     padding: 20px;
     max-width: 600px;
@@ -20,6 +47,7 @@ main {
     text-align: center;
 }
 
+/* Link Button Styles */
 a {
     display: inline-block;
     margin: 10px;
@@ -33,3 +61,70 @@ a {
 a:hover {
     background-color: #3700b3;
 }
+
+/* Header for pages */
+
+/* Primary Header */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1a1a2e; /* Dark background */
+    color: #f4f4f4; /* Light text color */
+}
+
+.main-header .header-left {
+    display: flex;
+    gap: 15px;
+}
+
+.main-header .home-button, .main-header .back-button {
+    text-decoration: none;
+    color: #f4f4f4;
+    padding: 5px 10px;
+    background-color: #e94560; /* Red button */
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+}
+
+.main-header .home-button:hover, .main-header .back-button:hover {
+    background-color: #0f3460; /* Darker hover effect */
+}
+
+.main-header .header-right h1 {
+    font-family: 'Pacifico', cursive; /* Fancy font for title */
+    font-size: 24px;
+    color: #f9ca24;
+}
+
+/* Secondary Header */
+.secondary-header {
+    display: flex;
+    justify-content: center;
+    background-color: #0f3460; /* Slightly darker blue */
+    padding: 10px 0;
+    border-bottom: 2px solid #e94560; /* Red border to match theme */
+}
+
+.bouncing-images {
+    display: flex;
+    gap: 20px;
+}
+
+.bouncing {
+    width: 50px;
+    animation: bounce 2s infinite;
+}
+
+/* Animation for Bouncing Effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* End of headers */
