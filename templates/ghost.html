@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>As you drift into your daydream...</h2>
+        <p>
+            ...a familiar figure emerges from the mist.<br>
+            You can't quite work out who it is, but feel some<br>
+            sort of ethereal connection to the character approaching.<br>
+            Then finally it clicks! The figure is you as the Witchy Ghost of<br>
+            Christmas Past! Shrouded in fog, the figure speaks: <br><br>
+
+            "Nana Tina, follow me through a journey of a Christmas pasts.<br>
+            But beware, for not all paths lead to the truth!"<br>
+        </p>
+    </div>
+
+    <img src="/static/images/christmasghost.jpg" alt="Christmas Ghost" class="dead-end-image">
+
+    <div class="choices" id="choice-container">
+        <button onclick="location.href='/christmas-ghost/memories'" class="choice-button">
+            You follow the ghost into a swirling portal of memories
+        </button>
+        <button onclick="location.href='/christmas-ghost/refusal'" class="choice-button">
+            You refuse to follow and instead demand tea and biscuits from the ghost
+        </button>
+        <button onclick="location.href='/christmas-ghost/newspaper'" class="choice-button">
+            You chase the ghost away with a rolled-up newspaper
+        </button>
+    </div>
+</div>
+{% endblock %}

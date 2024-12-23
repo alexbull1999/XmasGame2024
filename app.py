@@ -50,5 +50,35 @@ def scenario_mystery_stranger():
     return render_template("stranger.html")
 
 
+@app.route("/christmas-mystery/goose")
+def scenario_mystery_goose():
+    return render_template("goose.html")
+
+
+@app.route("/christmas-mystery/distracted")
+def scenario_mystery_distracted():
+    return render_template("distracted.html")
+
+
+@app.route("/christmas-mystery/earlyconfront")
+def scenario_mystery_earlyconfront():
+    return render_template("earlyconfront.html")
+
+
+@app.route("/christmas-ghost")
+def scenario_ghost():
+    return render_template("ghost.html")
+
+
+@app.route("/christmas-ghost/refusal")
+def scenario_ghost_refusal():
+    return render_template("ghostrefusal.html")
+
+
+@app.route("/christmas-ghost/newspaper")
+def scenario_ghost_newspaper():
+    return render_template("newspaper.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
