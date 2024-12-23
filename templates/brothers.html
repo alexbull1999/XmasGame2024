@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>Your transported to another memory...</h2>
+        <p>
+            ...where two young brothers are causing Christmas mischief<br>
+            One is trying to put the star on the tree,<br>
+            while the other is eating all the mince pies.<br><br>
+        </p>
+        <img src="/static/images/nickchris.jpg" alt="Actors on Stage" style="max-width: 100%; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);" />
+    </div>
+
+    <div class="choices" id="choice-container">
+        <button onclick="location.href='/christmas-mystery/celebration'" class="choice-button">
+            Help the brothers decorate the tree
+        </button>
+    </div>
+</div>
+{% endblock %}

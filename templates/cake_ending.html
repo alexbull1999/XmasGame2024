@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>The Final Surprise Awaits...</h2>
+        <p>
+            Nana Tina is bustling around, preparing to take the Christmas cake over to the family.<br>
+            But as she reaches for the cake tin, she finds a mysterious envelope hidden underneath.<br>
+            She gasps, "What is this? I don’t remember placing this here!"<br><br>
+
+            She opens the envelope and finds a handwritten note:<br>
+            <strong>"Solve this clue to uncover your greatest treasure."</strong><br><br>
+
+            The note reads:<br>
+            <em>"Among the photos of yore, one holds a truth unspoken,<br>
+            Of love and laughter, a bond unbroken.<br>
+            To reveal the mystery, you must follow your hunch,<br>
+            Who is your favourite grandchild, the best of bunch."</em>
+        </p>
+    </div>
+
+    <div class="choices">
+        <p>Who is it?</p>
+        <button id="solve-button" class="choice-button">
+            Alex
+        </button>
+        <button id="lila-button" class="choice-button">
+            Lila
+        </button>
+        <button id="adam-button" class="choice-button">
+            Adam
+        </button>
+    </div>
+
+    <!-- Error Message Section -->
+    <p id="error-message" style="display: none; color: red; text-align: center; margin-top: 10px;"></p>
+
+    <!-- Photo Section -->
+    <div id="photo-reveal" style="display: none; margin-top: 20px;">
+        <h3 style="color: green;">You found it! Nana's favorite grandchild is revealed!</h3>
+        <p>The photo brings tears to your eyes... "How great is Alex!" you think to yourself</p>
+        <img src="/static/images/favourite-grandchild.jpg" alt="Nana and Her Favorite Grandchild"
+            style="max-width: 100%; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <a href="/" class="choice-button">Restart Adventure</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById("solve-button").addEventListener("click", function () {
+        // Hide the choices and show the photo reveal
+        document.querySelector(".choices").style.display = "none";
+        document.getElementById("photo-reveal").style.display = "block";
+    });
+
+    document.getElementById("lila-button").addEventListener("click", function () {
+        replaceWithMessage("lila-button", "Sorry, I think you might be mistaken! Try again!");
+    });
+
+    document.getElementById("adam-button").addEventListener("click", function () {
+        replaceWithMessage("adam-button", "Sorry, I think you might be mistaken! Try again!");
+    });
+
+    function replaceWithMessage(buttonId, messageText) {
+        const button = document.getElementById(buttonId);
+
+        // Replace the button content with a styled message
+        button.style.backgroundColor = "black";
+        button.style.color = "red";
+        button.style.border = "none";
+        button.textContent = messageText;
+        button.disabled = true; // Prevent further clicks
+    }
+</script>
+{% endblock %}
+

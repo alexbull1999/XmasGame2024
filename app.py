@@ -85,5 +85,25 @@ def scenario_ghost_memories():
     return render_template("memories.html")
 
 
+@app.route("/christmas-ghost/brothers")
+def scenario_ghost_brothers():
+    return render_template("brothers.html")
+
+
+@app.route("/christmas-mystery/celebration")
+def scenario_mystery_celebration():
+    return render_template("celebration.html")
+
+
+@app.route("/christmas-cake")
+def scenario_cake():
+    return render_template("cake.html")
+
+
+@app.route("/christmas-cake/ending")
+def scenario_cake_ending():
+    return render_template("cake_ending.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

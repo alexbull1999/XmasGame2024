@@ -3,7 +3,8 @@
 
 /* Body Styles */
 html, body {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -355,4 +356,64 @@ a:hover {
 
 .restart-button:hover {
     background-color: #d1304f; /* Slightly darker red on hover */
+}
+
+.riddle-box {
+    background-color: #555; /* Festive yellow background */
+    color: #333; /* Dark text for contrast */
+    padding: 15px; /* Add space inside the box */
+    border-radius: 10px; /* Rounded edges */
+    margin-top: 20px; /* Add space above the box */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    text-align: center; /* Center-align the text */
+    font-weight: bold; /* Make the text stand out */
+}
+
+/* General Cake Options Styling */
+.cake-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
+    gap: 20px; /* Add space between the columns */
+    justify-items: center; /* Center the content within each grid cell */
+    margin: 20px auto; /* Center the entire grid horizontally */
+    max-width: 90%; /* Optional: Limit the width of the container */
+}
+
+/* Image Styling */
+.cake-image {
+    width: auto; /* Maintain aspect ratio */
+    height: 150px; /* Ensure uniform height */
+    border-radius: 10px; /* Optional: Add rounded edges */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: transform 0.2s ease-in-out; /* Add a hover effect */
+}
+
+/* Hover Effect */
+.cake-image:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Message Styling */
+.cake-message {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: black; /* Add black background for legibility */
+    color: white; /* Ensure contrast */
+    border-radius: 5px; /* Optional: Rounded edges for text background */
+    display: none; /* Initially hidden */
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .cake-options {
+        grid-template-columns: repeat(2, 1fr); /* Switch to two columns */
+    }
+}
+
+@media (max-width: 480px) {
+    .cake-options {
+        grid-template-columns: 1fr; /* Switch to a single column */
+    }
 }

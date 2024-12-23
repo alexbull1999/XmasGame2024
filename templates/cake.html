@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>Christmas Eve comes and goes...</h2>
+        <p>
+            You wakes up bright and early the next day, ready to purchase the Christmas cake
+            that you are planning to take to the family celebration. As you think about which
+            Christmas Dessert to select, several options come to mind. But which one should you take?
+        </p>
+    </div>
+
+    <!-- Cake Options -->
+    <div class="cake-options" id="cake-options">
+        <div class="cake" id="cake-1">
+            <img src="/static/images/christmaspudding.png" alt="Cake Option 1" class="cake-image">
+            <p class="cake-message" style="display: none; color: red;">Christmas Pudding is overrated! Pick again.</p>
+        </div>
+        <div class="cake" id="cake-2">
+            <img src="/static/images/jelly.png" alt="Cake Option 2" class="cake-image">
+            <p class="cake-message" style="display: none; color: red;">A solid choice, but we can be more festive!</p>
+        </div>
+        <div class="cake" id="cake-3">
+            <img src="/static/images/bigcake.png" alt="Cake Option 3" class="cake-image">
+            <p class="cake-message" style="display: none; color: green;">Perfect choice!</p>
+        </div>
+    </div>
+
+    <!-- Family Photo Section -->
+    <div id="family-photo" style="display: none; margin-top: 20px;">
+        <h3 style="color: green;">Nana’s choice is a hit with the family!</h3>
+        <img src="/static/images/birthday.jpg" alt="Nana and Family" style="max-width: 100%; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="choices" id="choice-container">
+            <button onclick="location.href='/christmas-cake/ending'" class="choice-button">
+                Continue
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cakeOptions = document.getElementById('cake-options');
+        const cakes = Array.from(cakeOptions.children);
+
+        // Shuffle the cakes
+        cakes.sort(() => Math.random() - 0.5);
+
+        // Re-append the shuffled cakes to the container
+        cakes.forEach(cake => cakeOptions.appendChild(cake));
+
+        // Add click event listeners for each cake
+        document.getElementById('cake-1').addEventListener('click', function () {
+            showMessage('cake-1', false);
+        });
+
+        document.getElementById('cake-2').addEventListener('click', function () {
+            showMessage('cake-2', false);
+        });
+
+        document.getElementById('cake-3').addEventListener('click', function () {
+            showMessage('cake-3', true);
+        });
+
+        // Function to show the message and handle correct/incorrect cakes
+        function showMessage(cakeId, isCorrect) {
+            const cakeDiv = document.getElementById(cakeId);
+            const message = cakeDiv.querySelector('.cake-message');
+            const image = cakeDiv.querySelector('.cake-image');
+
+            if (isCorrect) {
+                // Show success message
+                message.style.display = 'block';
+                image.style.display = 'none'; // Hide the cake image
+                document.getElementById('family-photo').style.display = 'block'; // Show the family photo
+            } else {
+                // Show error message and hide the wrong cake
+                message.style.display = 'block';
+                image.style.display = 'none'; // Hide the cake image
+            }
+        }
+    });
+</script>
+{% endblock %}
