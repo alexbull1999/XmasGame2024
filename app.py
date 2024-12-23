@@ -82,7 +82,7 @@ def scenario_ghost_newspaper():
 
 @app.route("/christmas-ghost/memories")
 def scenario_ghost_memories():
-    return render_template("memories")
+    return render_template("memories.html")
 
 
 if __name__ == "__main__":

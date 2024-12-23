@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>The ghost transports you to a view of two actors on a stage...</h2>
+        <p>
+            ...but the actors are frozen in time.<br>
+            Looking around you see a full house of audience members,<br>
+            who have come to see the performance, also frozen like<br>
+            statues in time. Suddenly the ghost turns to you and says:<br>
+            "The lines of this play are locked behind a puzzle of history.<br>
+            Solve this riddle to restore the memory!"<br><br>
+
+            "I was warned about betrayal, yet I fell for the stab.<br>
+            In Rome, they call me a leader; in plays, I am just mad.<br>
+            Who am I?"<br>
+        </p>
+    </div>
+
+    <!-- Input Box Section -->
+    <div class="riddle-input">
+        <label for="answer">Enter your answer:</label><br>
+        <input type="text" id="answer" name="answer" placeholder="Your answer here..." />
+        <button id="submit-answer">Submit</button>
+    </div>
+
+    <!-- Feedback Section -->
+    <div id="feedback" style="display: none; margin-top: 20px;"></div>
+
+    <!-- Image Section (Hidden by Default) -->
+    <div id="success-content" style="display: none; margin-top: 20px;">
+        <img src="/static/images/nanabarrytheatre.jpg" alt="Actors on Stage" style="max-width: 100%; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);" />
+        <br>
+        <a href="/christmas-ghost/brothers" class="choice-button">Correct! Progress to the next stage</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const submitButton = document.getElementById('submit-answer');
+        const answerInput = document.getElementById('answer');
+        const feedbackDiv = document.getElementById('feedback');
+        const successContent = document.getElementById('success-content');
+
+        submitButton.addEventListener('click', function() {
+            const answer = answerInput.value.trim().toLowerCase();
+
+            if (answer === "julius caesar" || answer === "caesar") {
+                // Correct Answer
+                feedbackDiv.style.display = "none"; // Hide feedback
+                successContent.style.display = "block"; // Show success content
+            } else {
+                // Incorrect Answer
+                feedbackDiv.style.display = "block"; // Show feedback
+                feedbackDiv.innerHTML = "<p style='color: red;'>Wrong answer, please try again!</p>";
+                successContent.style.display = "none"; // Hide success content
+            }
+        });
+    });
+</script>
+{% endblock %}
