@@ -34,17 +34,21 @@ def scenario_mystery_crossword():
 def scenario_mystery_confrontation():
     return render_template("confrontation.html")
 
+
 @app.route("/christmas-mystery/signatures")
 def scenario_mystery_signatures():
     return render_template("signatures.html")
+
 
 @app.route("/christmas-mystery/evilplan")
 def scenario_mystery_evilplan():
     return render_template("evilplan.html")
 
+
 @app.route("/christmas-mystery/stranger")
 def scenario_mystery_stranger():
     return render_template("stranger.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

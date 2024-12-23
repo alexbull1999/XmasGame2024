@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="dead-end-container">
+    <h1 class="dead-end-text">
+        That was a close call!
+    </h1>
+    <p class="dead-end-text">
+        The suspicious stranger turned out to be Prince Andrew
+        lurking behind a tree, having been uninvited from Buckingham
+        Palace's festivities this year. You tell him to do one and
+        rush home to forget about this highly distressing encounter.
+    </p>
+
+    <!-- Optional Image -->
+    <iframe src="https://giphy.com/embed/aoHJx2LKrLr1FQuD2D" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    <!-- Restart Button -->
+    <a href="/" class="restart-button">Restart Adventure</a>
+</div>
+{% endblock %}
