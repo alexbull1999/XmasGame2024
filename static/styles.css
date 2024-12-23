@@ -2,17 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 /* Body Styles */
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    font-family: 'Pacifico', cursive;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header and Footer Styles */
 header, footer {
     background-color: #6200ea;
+    width: 100%;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -26,7 +31,7 @@ header h1 {
     color: #f9ca24; /* A contrasting gold-like color */
 }
 
-header a {
+.start-button {
     font-family: Arial, sans-serif; /* Keep buttons in Arial for readability */
     text-decoration: none;
     color: #f4f4f4;
@@ -35,15 +40,28 @@ header a {
     border-radius: 5px;
 }
 
-header a:hover {
+.start-button:hover {
     background-color: #0f3460; /* Hover effect for buttons */
 }
 
+.readable-paragraph {
+    font-family: 'Times New Roman', Times, serif; /* Use Times New Roman or a fallback serif font */
+    font-size: 22px; /* Set a comfortable font size */
+    line-height: 1.6; /* Add line spacing for readability */
+    color: #333; /* Dark text for good contrast */
+    margin: 10px 0; /* Add spacing between paragraphs */
+}
+
+
+
 /* Main Content Styles */
 main {
+    flex-grow: 1;
     padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: none;
+    margin: 0;
     text-align: center;
 }
 
@@ -100,13 +118,80 @@ a:hover {
 
 /* Secondary Header */
 .secondary-header {
-    display: flex;
-    justify-content: center;
+    position: relative; /* Allows it to scroll with the page */
+    z-index: 10; /* Ensures it's above other elements */
+    overflow: hidden; /* Keeps images within bounds */
     background-color: #0f3460; /* Slightly darker blue */
-    padding: 10px 0;
-    border-bottom: 2px solid #e94560; /* Red border to match theme */
+    min-height: 60px; /* Keep the reduced height */
+    display: flex; /* Ensures child elements align properly */
+    justify-content: center; /* Centers the images horizontally */
+    align-items: center; /* Centers the images vertically */
+    border-bottom: 2px solid #e94560; /* Adds a bottom border for style */
 }
 
+
+
+.bouncing-images img {
+    position: absolute; /* Allows independent movement */
+    top:13px; /* Slightly raise all images */
+    left: -100px; /* Start offscreen to the left */
+    width: 50px; /* Image size */
+    animation: move-horizontal 8s linear infinite, bounce-vertical 2s ease-in-out infinite;
+}
+
+/* Horizontal Movement */
+@keyframes move-horizontal {
+    0% {
+        left: -100px; /* Start slightly offscreen to the left */
+    }
+    100% {
+        left: 110vw; /* Move fully across the viewport to the right */
+    }
+}
+
+/* Vertical Bouncing */
+@keyframes bounce-vertical {
+    0%, 100% {
+        transform: translateY(0px); /* Default position */
+    }
+    50% {
+        transform: translateY(-10px); /* Slightly reduced bounce height */
+    }
+}
+
+/* Staggered Animation Delays for Horizontal Movement */
+.bouncing-images img:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bouncing-images img:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.bouncing-images img:nth-child(3) {
+    animation-delay: 2s;
+}
+
+.bouncing-images img:nth-child(4) {
+    animation-delay: 3s;
+}
+
+.bouncing-images img:nth-child(5) {
+    animation-delay: 4s;
+}
+
+
+
+/*
+.secondary-header {
+    display: flex;
+    justify-content: center;
+    background-color: #0f3460;
+    padding: 20px;
+    border-bottom: 2px solid #e94560;
+}
+*/
+/*
 .bouncing-images {
     display: flex;
     gap: 20px;
@@ -114,17 +199,146 @@ a:hover {
 
 .bouncing {
     width: 50px;
-    animation: bounce 2s infinite;
+    animation: bounce 3s infinite;
 }
+*/
 
 /* Animation for Bouncing Effect */
+/*
 @keyframes bounce {
     0%, 100% {
-        transform: translateY(0);
+        transform: translateY(15px);
     }
     50% {
         transform: translateY(-15px);
     }
 }
+*/
+
+.nan-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 40vh; /* Constrain container height to 40% of the viewport height */
+    overflow: hidden; /* Prevent the image from overflowing the container */
+    margin: 20px auto; /* Center the container */
+}
+
+.nan-image {
+    max-height: 100%; /* Ensure the image doesn’t exceed the container height */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Prevent it from exceeding the width */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Subtle shadow */
+}
 
 /* End of headers */
+
+/* Festive Background for Story Pages */
+.story-container {
+    background: url('/static/images/festive-background.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 30px;
+    text-align: center;
+    color: #fff; /* White text for contrast */
+    min-height: calc(100vh - 160px); /* Adjust height to fit header/footer */
+    margin-top: 0; /* Ensure it starts immediately below the header */
+    position: relative; /* Prevent stacking conflicts */
+    z-index: 1; /* Stay below secondary-header */
+    box-sizing: border-box;
+}
+
+
+/* Text Styling for the Story Premise */
+.story-premise h2 {
+    font-family: 'Pacifico', cursive; /* Festive font for the title */
+    font-size: 36px;
+    color: #f9ca24; /* Golden color for festive vibes */
+    margin-bottom: 20px;
+}
+
+.story-premise p {
+    font-family: 'Times New Roman', Times, serif; /* Readable font for the text */
+    font-size: 22px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+/* Buttons for Choices */
+.choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Space between buttons */
+}
+
+.choice-button {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    background-color: #e94560; /* Festive red button */
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    width: 70%; /* Makes the buttons span 70% of the page width */
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.choice-button:hover {
+    background-color: #0f3460; /* Blue hover effect */
+}
+
+/* Dead-End Container */
+.dead-end-container {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9; /* Light festive background */
+    color: #333; /* Neutral dark text */
+    font-family: 'Pacifico', cursive; /* Festive font for text */
+    border: 3px solid #e94560; /* Red border for festive feel */
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 50px auto; /* Center container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Ending Text */
+.dead-end-text {
+    font-size: 24px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #0f3460; /* Festive blue for main text */
+}
+
+/* Image Section */
+.dead-end-image {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto; /* Space below the text */
+    border-radius: 10px; /* Rounded edges for the image */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+/* Restart Button */
+.restart-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-family: Arial, sans-serif; /* Clear font for readability */
+    background-color: #e94560; /* Bright red button */
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); /* Button shadow */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.restart-button:hover {
+    background-color: #d1304f; /* Slightly darker red on hover */
+}

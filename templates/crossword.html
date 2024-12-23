@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>You solve the cryptic crossword...</h2>
+        <p>
+            ...which leads you to uncover some scandalous information.<br>
+            Cate has been hatching a despicable scheme to steal all<br>
+            the Christmas presents in the neighbourhood.<br>
+            But thanks to your clues, you know the house that<br>
+            Cate is planning to target next and have the power to stop her.<br><br>
+        </p>
+    </div>
+
+    <div class="choices">
+        <button onclick="location.href='/christmas-mystery/confrontation'" class="choice-button">
+            Commence the stakeout, waiting to foil Cate's plan
+        </button>
+        <button onclick="location.href='/christmas-mystery/signatures'" class="choice-button">
+            Rush home to collect as many photos of Cate as you can carry for her to sign
+        </button>
+        <button onclick="location.href='/christmas-mystery/evil'" class="choice-button">
+            Join forces with Cate and help steal even more presents
+        </button>
+    </div>
+</div>
+{% endblock %}

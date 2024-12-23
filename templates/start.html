@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>Twas the Night Before Christmas...</h2>
+        <p>
+            ...and all through the house,<br>
+            Not a creature was stirring, not even a mouse.<br>
+            Presents were wrapped, stockings hung with care,<br>
+            But a twist of fate was soon in the air.<br><br>
+
+            Nana Tina sat down with her tea in hand,<br>
+            When she heard a loud bang—oh, this wasn't planned!<br>
+        </p>
+    </div>
+
+    <div class="choices">
+        <button onclick="location.href='/christmas-mystery'" class="choice-button">
+            You investigate the loud bang, for fear of a Christmas Catastrophe
+        </button>
+        <button onclick="location.href='/christmas-catastrophe'" class="choice-button">
+            You continue on with in total serenely, your hearing aids not being in
+        </button>
+        <button onclick="location.href='/christmas-ghost'" class="choice-button">
+            The warmth of your tea lulls you into a sudden daydream
+        </button>
+    </div>
+</div>
+{% endblock %}

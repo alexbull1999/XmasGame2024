@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>You arrive at the largest Oak tree this side of Mottingham...</h2>
+        <p>
+            ...and, lo and behold, you spot a cryptic crossword.<br>
+            Fortunately for you, all the clues are intricately<br>
+            related to Cate Blanchett's career and you feel a rush<br>
+            of immense validation. Your years of studying Cate's<br>
+            career in minute detail are about to finally pay off.<br><br>
+        </p>
+    </div>
+
+    <div class="choices">
+        <button onclick="location.href='/christmas-mystery/crossword'" class="choice-button">
+            You solve the crossword to reveal Cate's plan!
+        </button>
+        <button onclick="location.href='/christmas-mystery/goose'" class="choice-button">
+            You get distracted by a particularly squawky goose in the corner of your eye
+        </button>
+        <button onclick="location.href='/christmas-mystery/stranger'" class="choice-button">
+            You notice a suspicious stranger lurking in the shadows and approach them
+        </button>
+    </div>
+</div>
+{% endblock %}

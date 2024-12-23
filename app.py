@@ -10,14 +10,29 @@ def index():
 
 
 # Example storyline route
-@app.route("/scenario1")
-def scenario1():
-    return render_template("scenario1.html")
+@app.route("/start")
+def start():
+    return render_template("start.html")
 
 
-@app.route("/scenario2")
-def scenario2():
-    return render_template("scenario2.html")
+@app.route("/christmas-mystery")
+def scenario_mystery():
+    return render_template("mystery.html")
+
+
+@app.route("/christmas-mystery/mailbox")
+def scenario_mystery_mailbox():
+    return render_template("mailbox.html")
+
+
+@app.route("/christmas-mystery/crossword")
+def scenario_mystery_crossword():
+    return render_template("crossword.html")
+
+
+@app.route("/christmas-mystery/confrontation")
+def scenario_mystery_confrontation():
+    return render_template("confrontation.html")
 
 
 if __name__ == "__main__":

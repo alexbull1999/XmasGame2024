@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="story-container">
+    <div class="story-premise">
+        <h2>You investigate the loud bang...</h2>
+        <p>
+            ...and head out into the patio,<br>
+            where you thought it eminated from.<br>
+            Upon closer inspection, you notice some of the<br>
+            Christmas lights flickering and other decorations<br>
+            strewn all over the street. Then suddenly a chorus<br>
+            of wailing children erupts, crying for lost presents
+            no longer under the tree!<br><br>
+
+            At this point, you spot a cryptic note left on your<br>
+            front drive: "Solve this riddle to uncover the truth, I'm<br>
+            not alive, but I grow; I don't have lungs, but I need air;
+            What am I?<br>
+        </p>
+    </div>
+
+    <div class="choices">
+        <button onclick="location.href='/christmas-mystery/mailbox'" class="choice-button">
+            A tree! You rush to check Chislehurst's largest tree for further clues
+        </button>
+        <button onclick="location.href='/christmas-mystery/distracted'" class="choice-button">
+            You ignore the children's wails and go back to sipping on your tea. They probably had it coming...
+        </button>
+        <button onclick="location.href='/christmas-mystery/give-up'" class="choice-button">
+            You decide Cate Blanchett must be involved in all this and go and confront her now
+        </button>
+    </div>
+</div>
+{% endblock %}
