@@ -79,6 +79,10 @@ def scenario_ghost_refusal():
 def scenario_ghost_newspaper():
     return render_template("newspaper.html")
 
+@app.route("/christmas-ghost/memories")
+def scenario_ghost_memories():
+    return render_template("memories")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
