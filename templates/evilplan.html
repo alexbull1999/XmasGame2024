@@ -14,7 +14,7 @@
 
     <!-- Input for Genre -->
     <div class="api-container">
-        <input type="text" id="genre-input" placeholder="Enter a film genre (e.g., comedy, thriller)">
+        <input type="text" id="genre-input" placeholder="Enter a film genre">
         <button id="generate-button">Generate Plot</button>
     </div>
 
@@ -30,6 +30,7 @@
     document.getElementById('generate-button').addEventListener('click', async () => {
         const genre = document.getElementById('genre-input').value;
         const plotResult = document.getElementById('plot-result');
+        const image = document.getElementById('generated-image');
 
         if (!genre) {
             plotResult.innerHTML = '<p style="color: red;">Please enter a genre!</p>';
@@ -37,6 +38,7 @@
         }
 
         plotResult.innerHTML = '<p>Generating plot...</p>';
+        image.style.display = 'none'; // Hide the image until it's ready
 
         try {
             const response = await fetch('/generate-plot', {
@@ -50,15 +52,17 @@
             if (data.error) {
                 plotResult.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
             } else {
+                const { title, plot, image_url } = data; // Destructure title, plot, and image_url from response
+
                 plotResult.innerHTML = `
-                    <h3>Generated Plot:</h3>
-                    <p>${data.plot}</p>
+                    <h3 style="font-size: 24px; font-weight: bold;">${title}</h3>
+                    <p style="font-size: 18px;">${plot}</p>
                 `;
-            }
-            if (data.image_url) {
-                const image = document.getElementById('generated-image');
-                image.src = data.image_url;
-                image.style.display = 'block';
+
+                if (image_url) {
+                    image.src = image_url;
+                    image.style.display = 'block'; // Show the image
+                }
             }
         } catch (error) {
             plotResult.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;

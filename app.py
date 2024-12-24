@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import os
-import openai
+import google.generativeai as genai
 
 app = Flask(__name__)
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# configure api key for gemini
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 # Home route
@@ -113,38 +115,34 @@ def scenario_cake_ending():
 def generate_plot():
     genre = request.json.get("genre", "comedy")  # Default to comedy
 
-    # ChatGPT API call
     try:
-        response = openai.ChatCompletion.acreate(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a creative movie plot generator.",
-                },
-                {
-                    "role": "user",
-                    "content": f"Generate a short movie plot "
-                               f"for a {genre} film "
-                               f"starring Cate Blanchett and a "
-                               f"grandmother who joins forces with her.",
-                },
-            ],
-            max_tokens=150,
+        # Gemini API call
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        response = model.generate_content(
+            f"Generate a short movie plot "
+            f"for a {genre} film "
+            f"starring a blonde actress "
+            f"called Cate Blanchett and a grandmother,"
+            f"Nana Tina, who joins forces with her."
+            f"The plot should have a title, that you output as "
+            f"Title: Title Name, followed by - on a new line - the plot,"
+            f"formatted as Plot: The plot..."
+            f"The maximum plot length should be ~10-15 lines",
+            stream=True,
         )
-        plot = response.choices[0].message.content
+        full_response = ""
+        for chunk in response:
+            full_response += chunk.text
 
-        # DALLE API call for image
-        dalle_response = openai.Image.acreate(
-            prompt=f"A {genre} film poster featuring Cate "
-                   f"Blanchett and a grandmother "
-                   f"that has the following plot: {plot}",
-            n=1,
-            size="512x512",
-        )
-        image_url = dalle_response.data[0].url
+        # Parse response into title and plot
+        title = ""
+        plot = ""
+        if "Title:" in full_response and "Plot:" in full_response:
+            parts = full_response.split("Plot:")
+            title = parts[0].replace("Title:", "").strip()
+            plot = parts[1].strip()
 
-        return jsonify({"plot": plot, "image_url": image_url})
+        return jsonify({"title": title, "plot": plot})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
