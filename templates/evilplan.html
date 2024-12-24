@@ -10,11 +10,59 @@
         You successfully ruin Christmas for thousands of Chislehurst
         children, but in doing so earn the trust of Cate Blanchett,
         who offers you a starring role in her next film...
-
-        ADD CLAUDE API TO GENERATE AN IMAGE / PLOT BASED ON A PROMPT
     </p>
+
+    <!-- Input for Genre -->
+    <div class="api-container">
+        <input type="text" id="genre-input" placeholder="Enter a film genre (e.g., comedy, thriller)">
+        <button id="generate-button">Generate Plot</button>
+    </div>
+
+    <!-- Display API Result -->
+    <div id="plot-result" style="margin-top: 20px;"></div>
+    <img id="generated-image" style="display: none; margin-top: 20px; max-width: 100%; border-radius: 10px;">
 
     <!-- Restart Button -->
     <a href="/" class="restart-button">Restart Adventure</a>
 </div>
+
+<script>
+    document.getElementById('generate-button').addEventListener('click', async () => {
+        const genre = document.getElementById('genre-input').value;
+        const plotResult = document.getElementById('plot-result');
+
+        if (!genre) {
+            plotResult.innerHTML = '<p style="color: red;">Please enter a genre!</p>';
+            return;
+        }
+
+        plotResult.innerHTML = '<p>Generating plot...</p>';
+
+        try {
+            const response = await fetch('/generate-plot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ genre })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                plotResult.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+            } else {
+                plotResult.innerHTML = `
+                    <h3>Generated Plot:</h3>
+                    <p>${data.plot}</p>
+                `;
+            }
+            if (data.image_url) {
+                const image = document.getElementById('generated-image');
+                image.src = data.image_url;
+                image.style.display = 'block';
+            }
+        } catch (error) {
+            plotResult.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        }
+    });
+</script>
 {% endblock %}

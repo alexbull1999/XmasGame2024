@@ -1,6 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+import os
+import openai
 
 app = Flask(__name__)
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 # Home route
@@ -103,6 +107,46 @@ def scenario_cake():
 @app.route("/christmas-cake/ending")
 def scenario_cake_ending():
     return render_template("cake_ending.html")
+
+
+@app.route("/generate-plot", methods=["POST"])
+def generate_plot():
+    genre = request.json.get("genre", "comedy")  # Default to comedy
+
+    # ChatGPT API call
+    try:
+        response = openai.ChatCompletion.acreate(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a creative movie plot generator.",
+                },
+                {
+                    "role": "user",
+                    "content": f"Generate a short movie plot "
+                               f"for a {genre} film "
+                               f"starring Cate Blanchett and a "
+                               f"grandmother who joins forces with her.",
+                },
+            ],
+            max_tokens=150,
+        )
+        plot = response.choices[0].message.content
+
+        # DALLE API call for image
+        dalle_response = openai.Image.acreate(
+            prompt=f"A {genre} film poster featuring Cate "
+                   f"Blanchett and a grandmother "
+                   f"that has the following plot: {plot}",
+            n=1,
+            size="512x512",
+        )
+        image_url = dalle_response.data[0].url
+
+        return jsonify({"plot": plot, "image_url": image_url})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == "__main__":
